@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sli_doctrine_array_query_builder.example.class">Sli\DoctrineArrayQueryBuilderBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="sli_doctrine_array_query_builder.sorting_field_resolving.sorting_field_resolver"
+                 class="Sli\DoctrineArrayQueryBuilderBundle\SortingFieldResolving\AnnotationSortingFieldResolver">
+
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="sli_doctrine_array_query_builder.querying.array_query_builder"
+                 class="Sli\DoctrineArrayQueryBuilderBundle\Querying\ArrayQueryBuilder">
+
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="sli_doctrine_entity_data_mapper.mapping.entity_data_mapper" />
+            <argument type="service" id="sli_doctrine_array_query_builder.sorting_field_resolving.sorting_field_resolver" />
+        </service>
+    </services>
+</container>

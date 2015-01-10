@@ -1,0 +1,33 @@
+{
+    "name": "sergeil/doctrine-array-query-builder-bundle",
+    "description": "Provides an alternative way to build query using standard PHP's array notation",
+    "keywords": ["doctrine"],
+    "homepage": "http://github.com/sergeil/SliDoctrineArrayQueryBuilderBundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Sergei Lissovski",
+            "email": "sergei.lissovski@gmail.com",
+            "homepage": "http://sergei.lissovski.org/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "symfony/symfony": "~2.0",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "sergeil/aux-bundle": "~1.0",
+        "sergeil/expander-bundle": "~1.0",
+        "sergeil/doctrine-entity-data-mapper-bundle": "dev-develop"
+    },
+    "require-dev": {
+        "modera/foundation-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Sli\\DoctrineArrayQueryBuilderBundle": "" }
+    },
+    "target-dir": "Sli/DoctrineArrayQueryBuilderBundle"
+}
