@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fc670776d81d818347d82bf674f5ec2d",
+    "hash": "4160c4629bcf5741e11bb51263521cbd",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -855,19 +855,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sergeil/SliDoctrineEntityDataMapperBundle.git",
-                "reference": "1e63996507778a4936ee0fd53c5ddab031e91098"
+                "reference": "408f06966ff9d2b560f1e75f736a29193f80122c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sergeil/SliDoctrineEntityDataMapperBundle/zipball/1e63996507778a4936ee0fd53c5ddab031e91098",
-                "reference": "1e63996507778a4936ee0fd53c5ddab031e91098",
+                "url": "https://api.github.com/repos/sergeil/SliDoctrineEntityDataMapperBundle/zipball/408f06966ff9d2b560f1e75f736a29193f80122c",
+                "reference": "408f06966ff9d2b560f1e75f736a29193f80122c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.2",
                 "doctrine/orm": "~2.2,>=2.2.3",
                 "php": ">=5.3.0",
-                "sergeil/aux-bundle": "~1.0",
+                "sergeil/aux-bundle": "~1.1",
                 "sergeil/expander-bundle": "~1.0",
                 "symfony/symfony": "~2.0"
             },
@@ -896,7 +896,7 @@
             "keywords": [
                 "doctrine"
             ],
-            "time": "2014-12-24 15:17:48"
+            "time": "2015-01-03 20:03:30"
         },
         {
             "name": "sergeil/expander-bundle",
