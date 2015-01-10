@@ -1,7 +1,7 @@
 {
     "name": "sergeil/doctrine-array-query-builder-bundle",
     "description": "Provides an alternative way to build query using standard PHP's array notation",
-    "keywords": ["doctrine"],
+    "keywords": ["doctrine", "extjs"],
     "homepage": "http://github.com/sergeil/SliDoctrineArrayQueryBuilderBundle",
     "type": "symfony-bundle",
     "license": "MIT",
