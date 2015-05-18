@@ -1,6 +1,8 @@
 <?php
 
 namespace Sli\DoctrineArrayQueryBuilderBundle\Parsing;
+use Sli\DoctrineArrayQueryBuilderBundle\Exceptions\Parsing\FilterParsingException;
+use Sli\DoctrineArrayQueryBuilderBundle\Exceptions\Parsing\MissingPropertyException;
 
 /**
  * @author Sergei Lissovski <sergei.lissovski@gmail.com>
@@ -20,6 +22,10 @@ class Filter implements FilterInterface
     const COMPARATOR_NOT_IN = 'notIn';
     const COMPARATOR_IS_NULL = 'isNull';
     const COMPARATOR_IS_NOT_NULL = 'isNotNull';
+
+    const KEY_COMPARATOR = 'comparator';
+    const KEY_PROPERTY = 'property';
+    const KEY_VALUE = 'value';
 
     private $input;
     private $parsedInput;
@@ -90,14 +96,25 @@ class Filter implements FilterInterface
         $separatorPosition = strpos($value, ':');
 
         if (false === $separatorPosition && in_array($value, array(self::COMPARATOR_IS_NULL, self::COMPARATOR_IS_NOT_NULL))) {
-            $parsed['comparator'] = $value;
+            $parsed[self::KEY_COMPARATOR] = $value;
         } else {
-            $parsed['comparator'] = substr($value, 0, $separatorPosition);
-            $parsed['value'] = substr($value, $separatorPosition + 1);
+            $parsed[self::KEY_COMPARATOR] = substr($value, 0, $separatorPosition);
+            $parsed[self::KEY_VALUE] = substr($value, $separatorPosition + 1);
 
-            if (in_array($parsed['comparator'], array(self::COMPARATOR_IN, self::COMPARATOR_NOT_IN))) {
-                $parsed['value'] = '' != $parsed['value'] ? explode(',', $parsed['value']) : array();
+            if (in_array($parsed[self::KEY_COMPARATOR], array(self::COMPARATOR_IN, self::COMPARATOR_NOT_IN))) {
+                $parsed[self::KEY_VALUE] = '' != $parsed[self::KEY_VALUE] ? explode(',', $parsed[self::KEY_VALUE]) : array();
             }
+        }
+
+        if (empty($parsed[self::KEY_COMPARATOR]))
+        {
+            throw new FilterParsingException(
+                sprintf(
+                    "Invalid string filter value '%s'. ''%s' must be specified in this format 'Comparator:Value' ",
+                    $value,
+                    self::KEY_COMPARATOR
+                )
+            );
         }
 
         return $parsed;
@@ -113,6 +130,8 @@ class Filter implements FilterInterface
 
         if (isset($input['property'])) {
             $parsed['property'] = $input['property'];
+        } else {
+            throw new FilterParsingException("'property' is a required key in input array");
         }
         if (isset($input['value'])) {
             if (is_string($input['value'])) {
@@ -123,6 +142,8 @@ class Filter implements FilterInterface
                     $parsed['value'][] = $this->parseStringFilterValue($value);
                 }
             }
+        } else {
+            throw new FilterParsingException("'value' is a required key in input array");
         }
 
         return $parsed;
@@ -197,5 +218,15 @@ class Filter implements FilterInterface
     static public function clazz()
     {
         return get_called_class();
+    }
+
+    public function __toString()
+    {
+        return sprintf(
+            "%s %s %s",
+            $this->getProperty(),
+            $this->getComparator(),
+            $this->getValue()
+        );
     }
 }
