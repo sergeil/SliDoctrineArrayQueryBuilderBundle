@@ -24,7 +24,8 @@
         "sergeil/doctrine-entity-data-mapper-bundle": "dev-develop"
     },
     "require-dev": {
-        "modera/foundation-bundle": "dev-master"
+        "modera/foundation-bundle": "~1.0",
+        "phpunit/phpunit": "~3.0"
     },
     "autoload": {
         "psr-0": { "Sli\\DoctrineArrayQueryBuilderBundle": "" }

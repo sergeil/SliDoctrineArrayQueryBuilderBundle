@@ -77,6 +77,7 @@ class ExpressionManager
             return false;
         } else {
             $meta = $this->em->getClassMetadata($this->fqcn);
+
             return $meta->hasField($expression) || $meta->hasAssociation($expression);
         }
     }
@@ -178,6 +179,8 @@ class ExpressionManager
     }
 
     /**
+     * For an expression "foo.bar.baz" will return three expressions: "foo", "foo.bar", "foo.bar.baz"
+     *
      * @param string $expression
      *
      * @return array
@@ -204,14 +207,15 @@ class ExpressionManager
             $alias = $this->resolveExpressionToAlias($expression);
 
             $parsedExpression = explode('.', $expression);
+
             if (0 == $i) {
                 $qb->leftJoin($this->rootAlias . '.' . $expression, $alias);
-            } else if (count($parsedExpression) == 1) {
-                $qb->leftJoin($this->rootAlias . '.' . $parsedExpression[0], $alias);
             } else {
-                $previousAlias = array_keys($this->allocatedAliases);
-                $previousAlias = $previousAlias[$i-1];
-                $qb->leftJoin($previousAlias . '.' . $parsedExpression[count($parsedExpression)-1], $alias);
+                $rootExpression = implode('.', array_slice($parsedExpression, 0, -1));
+                $propertyName = end($parsedExpression);
+
+                $parentAlias = $this->resolveExpressionToAlias($rootExpression);
+                $qb->leftJoin($parentAlias . '.' . $propertyName, $alias);
             }
         }
     }

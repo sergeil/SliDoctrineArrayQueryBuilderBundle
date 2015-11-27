@@ -7,6 +7,7 @@ use Modera\FoundationBundle\Testing\FunctionalTestCase;
 use Sli\AuxBundle\Util\Toolkit;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\CreditCard;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\DummyAddress;
+use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\DummyCity;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\DummyCountry;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\UserOrder;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\User;
@@ -37,8 +38,8 @@ class AbstractDatabaseTestCase extends FunctionalTestCase
 
         self::$entityClasses = array(
             UserOrder::clazz(), User::clazz(), DummyAddress::clazz(),
-            DummyCountry::clazz(), CreditCard::clazz(), Group::clazz(),
-            President::clazz()
+            DummyCountry::clazz(), DummyCity::clazz(), CreditCard::clazz(),
+            Group::clazz(), President::clazz()
         );
         foreach (self::$entityClasses as $className) {
             self::$metaClasses[] = self::$em->getClassMetadata($className);
@@ -71,6 +72,9 @@ class AbstractDatabaseTestCase extends FunctionalTestCase
                 $address = new DummyAddress();
                 $address->country = new DummyCountry();
                 $address->country->name = 'A';
+
+                $address->city = new DummyCity();
+                $address->city->name = 'ACity';
 
                 $address->street = 'foofoo';
                 $address->zip = '1010';
