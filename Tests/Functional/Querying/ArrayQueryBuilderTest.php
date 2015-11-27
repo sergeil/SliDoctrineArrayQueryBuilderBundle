@@ -478,7 +478,7 @@ class ArrayQueryBuilderTest extends AbstractDatabaseTestCase
      *
      * Fixed \Sli\DoctrineArrayQueryBuilderBundle\Querying\ExpressionManager::doInjectJoins
      */
-    public function testX()
+    public function testMultipleJoinsInFilters()
     {
         $qb = self::$builder->buildQueryBuilder(User::clazz(), array(
             'filter' => array(

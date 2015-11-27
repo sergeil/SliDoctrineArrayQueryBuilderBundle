@@ -15,7 +15,7 @@ use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\Group;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\President;
 use Sli\DoctrineArrayQueryBuilderBundle\Querying\ArrayQueryBuilder;
 
-require_once __DIR__ . '/Fixtures/entities.php';
+require_once __DIR__ . '/Fixtures/Entity/entities.php';
 
 /**
  * @author Sergei Lissovski <sergei.lissovski@gmail.com>
@@ -31,10 +31,6 @@ class AbstractDatabaseTestCase extends FunctionalTestCase
     static public function doSetUpBeforeClass()
     {
         self::$builder = self::$container->get('sli_doctrine_array_query_builder.querying.array_query_builder');
-
-        Toolkit::addAnnotationMetadataDriverForEntityManager(
-            self::$em, 'Sli\DoctrineArrayQueryBuilderBundle\Fixtures', realpath(__DIR__ . '/../../Fixtures')
-        );
 
         self::$entityClasses = array(
             UserOrder::clazz(), User::clazz(), DummyAddress::clazz(),
@@ -126,5 +122,4 @@ class AbstractDatabaseTestCase extends FunctionalTestCase
         $schemaTool = new SchemaTool(self::$em);
         $schemaTool->dropSchema($metaClasses);
     }
-
 } 

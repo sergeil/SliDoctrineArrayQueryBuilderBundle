@@ -1,27 +1,26 @@
-framework:
-    secret:          Hell yeah!
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
-    csrf_protection: true
-    session:         ~
-    templating:
-        engines: ['twig']
+imports:
+    - { resource: parameters.yml }
 
-# Twig Configuration
-twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+framework:
+    secret: Hell yeah!
 
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   pdo_mysql
-        host:     127.0.0.1
-        port:     3306
-        dbname:   sli_doctrinearrayquerybuilder
-        user:     root
-        password:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
         charset:  UTF8
 
     orm:
         auto_generate_proxy_classes: true
         auto_mapping: true
+        mappings:
+            fixtures:
+                type: annotation
+                dir: "%kernel.root_dir%/../../Entity"
+                is_bundle: false
+                prefix: Sli\DoctrineArrayQueryBuilderBundle\Fixtures
