@@ -4,7 +4,6 @@ namespace Sli\DoctrineArrayQueryBuilderBundle\Tests;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Modera\FoundationBundle\Testing\FunctionalTestCase;
-use Sli\AuxBundle\Util\Toolkit;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\CreditCard;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\DummyAddress;
 use Sli\DoctrineArrayQueryBuilderBundle\Fixtures\DummyCity;
