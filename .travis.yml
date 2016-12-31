@@ -22,5 +22,5 @@ before_install:
   - echo "memory_limit=2G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
 before_script:
-  - composer install
+  - composer update
   - mysql -e 'CREATE DATABASE sli_doctrinearrayquerybuilder'
