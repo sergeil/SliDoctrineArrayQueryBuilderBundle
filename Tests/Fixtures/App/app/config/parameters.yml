@@ -1,7 +1,7 @@
 parameters:
     database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: 3306
+    database_host: %db_host%
+    database_port: %db_port%
     database_name: sli_doctrinearrayquerybuilder
-    database_user: root
-    database_password:
+    database_user: %db_user%
+    database_password: %db_password%
