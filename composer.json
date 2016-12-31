@@ -24,7 +24,7 @@
         "sergeil/doctrine-entity-data-mapper-bundle": "dev-develop"
     },
     "require-dev": {
-        "modera/foundation-bundle": "~1.0",
+        "modera/foundation-bundle": "~2.0",
         "phpunit/phpunit": "~3.0"
     },
     "autoload": {

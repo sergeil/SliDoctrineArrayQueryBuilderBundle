@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d564a90499c553bc33c7a4527222481",
+    "content-hash": "f47e64779adba97e9c4da9924f3c4f79",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -963,28 +963,39 @@
         },
         {
             "name": "sergeil/aux-bundle",
-            "version": "v1.1.0",
-            "target-dir": "Sli/AuxBundle",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sergeil/SliAuxBundle.git",
-                "reference": "0dc8b9b233b42d94e4bc8fa69118a8fef0f17e15"
+                "reference": "e3ab8dbc0274ff7e075823779d71f54e9dda40d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sergeil/SliAuxBundle/zipball/0dc8b9b233b42d94e4bc8fa69118a8fef0f17e15",
-                "reference": "0dc8b9b233b42d94e4bc8fa69118a8fef0f17e15",
+                "url": "https://api.github.com/repos/sergeil/SliAuxBundle/zipball/e3ab8dbc0274ff7e075823779d71f54e9dda40d0",
+                "reference": "e3ab8dbc0274ff7e075823779d71f54e9dda40d0",
                 "shasum": ""
             },
             "require": {
+                "doctrine/orm": "^2.2",
                 "php": ">=5.3.0",
-                "symfony/framework-bundle": "~2.0"
+                "symfony/symfony": "~2.0|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.0"
             },
             "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Sli\\AuxBundle": ""
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
                 }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sli\\AuxBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1002,21 +1013,20 @@
             "keywords": [
                 "utils"
             ],
-            "time": "2014-12-25T12:51:40+00:00"
+            "time": "2016-12-31T14:44:38+00:00"
         },
         {
             "name": "sergeil/doctrine-entity-data-mapper-bundle",
             "version": "dev-develop",
-            "target-dir": "Sli/DoctrineEntityDataMapperBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sergeil/SliDoctrineEntityDataMapperBundle.git",
-                "reference": "408f06966ff9d2b560f1e75f736a29193f80122c"
+                "reference": "72b4ff09faca27d505445e7eb448ff76c1efb1f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sergeil/SliDoctrineEntityDataMapperBundle/zipball/408f06966ff9d2b560f1e75f736a29193f80122c",
-                "reference": "408f06966ff9d2b560f1e75f736a29193f80122c",
+                "url": "https://api.github.com/repos/sergeil/SliDoctrineEntityDataMapperBundle/zipball/72b4ff09faca27d505445e7eb448ff76c1efb1f0",
+                "reference": "72b4ff09faca27d505445e7eb448ff76c1efb1f0",
                 "shasum": ""
             },
             "require": {
@@ -1025,16 +1035,20 @@
                 "php": ">=5.3.0",
                 "sergeil/aux-bundle": "~1.1",
                 "sergeil/expander-bundle": "~1.0",
-                "symfony/symfony": "~2.0"
+                "symfony/symfony": "~2.0|~3.0"
             },
             "require-dev": {
-                "modera/foundation-bundle": "dev-master"
+                "modera/foundation-bundle": "~2.0",
+                "phpunit/phpunit": "~3.0"
             },
             "type": "symfony-bundle",
             "autoload": {
-                "psr-0": {
-                    "Sli\\DoctrineEntityDataMapperBundle": ""
-                }
+                "psr-4": {
+                    "Sli\\DoctrineEntityDataMapperBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1052,37 +1066,43 @@
             "keywords": [
                 "doctrine"
             ],
-            "time": "2015-01-03 20:03:30"
+            "time": "2016-12-31 16:15:58"
         },
         {
             "name": "sergeil/expander-bundle",
-            "version": "v1.0.1",
-            "target-dir": "Sli/ExpanderBundle",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sergeil/ExpanderBundle.git",
-                "reference": "e34ba3f47c23c4b9045675052804631e5760769a"
+                "reference": "cea063a87c7663f70e2829fcf695595196a1c1b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sergeil/ExpanderBundle/zipball/e34ba3f47c23c4b9045675052804631e5760769a",
-                "reference": "e34ba3f47c23c4b9045675052804631e5760769a",
+                "url": "https://api.github.com/repos/sergeil/ExpanderBundle/zipball/cea063a87c7663f70e2829fcf695595196a1c1b0",
+                "reference": "cea063a87c7663f70e2829fcf695595196a1c1b0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "symfony/framework-bundle": "~2.3"
+                "symfony/symfony": "~2.0|~3.0"
             },
             "require-dev": {
-                "modera/foundation-bundle": "dev-master",
-                "phake/phake": "~1.0",
+                "phake/phake": "~2.0",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "Sli\\ExpanderBundle": ""
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
                 }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sli\\ExpanderBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1100,7 +1120,7 @@
             "keywords": [
                 "extensibility"
             ],
-            "time": "2014-09-15T10:52:44+00:00"
+            "time": "2016-12-31T15:50:54+00:00"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -1814,17 +1834,17 @@
     "packages-dev": [
         {
             "name": "modera/foundation-bundle",
-            "version": "v1.1.2",
+            "version": "v2.53.0",
             "target-dir": "Modera/FoundationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/modera/ModeraFoundationBundle.git",
-                "reference": "eebf69f856388b055b9aea8cad2ad1c0374876c7"
+                "reference": "abded6c1c3224072ccd1536162206fbe441af039"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/modera/ModeraFoundationBundle/zipball/eebf69f856388b055b9aea8cad2ad1c0374876c7",
-                "reference": "eebf69f856388b055b9aea8cad2ad1c0374876c7",
+                "url": "https://api.github.com/repos/modera/ModeraFoundationBundle/zipball/abded6c1c3224072ccd1536162206fbe441af039",
+                "reference": "abded6c1c3224072ccd1536162206fbe441af039",
                 "shasum": ""
             },
             "require": {
@@ -1832,12 +1852,12 @@
                 "symfony/symfony": "~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "^5.5"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -1856,7 +1876,7 @@
                     "homepage": "http://sergei.lissovski.org/"
                 }
             ],
-            "time": "2015-10-05T06:51:09+00:00"
+            "time": "2016-11-30T11:53:40+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
