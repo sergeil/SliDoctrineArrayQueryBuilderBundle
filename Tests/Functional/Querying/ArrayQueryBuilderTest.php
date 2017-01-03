@@ -493,4 +493,28 @@ class ArrayQueryBuilderTest extends AbstractDatabaseTestCase
         // [Semantical Error] ... Class Sli\...\DummyCountry has no association named city
         $qb->getQuery()->getResult();
     }
+
+    /**
+     * Thanks to Eduardo L. for pointing out this bug and offering a fix!
+     */
+    public function testFetchClausesInjectionWithExplicitFetchStatement()
+    {
+        $qb = self::$builder->buildQueryBuilder(User::clazz(), array(
+            'filter' => array(
+                array(
+                    'property' => 'creditCard.id',
+                    'value' => 'eq:1'
+                )
+            ),
+            'fetch' => array('address.country')
+        ));
+
+        $this->assertEquals(
+            3,
+            count($qb->getDQLPart('join')['e']),
+            'Query is expected to have 3 join clauses: credictCard, address, address/country'
+        );
+
+        $qb->getQuery()->getResult();
+    }
 }

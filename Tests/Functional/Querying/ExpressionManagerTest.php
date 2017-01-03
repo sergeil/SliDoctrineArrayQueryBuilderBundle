@@ -202,4 +202,6 @@ class ExpressionManagerTest extends AbstractDatabaseTestCase
         $this->assertTrue($this->exprMgr->isAssociation('address.country'));
         $this->assertFalse($this->exprMgr->isAssociation('address.zip'));
     }
+
+
 }

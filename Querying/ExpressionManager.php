@@ -209,16 +209,18 @@ class ExpressionManager
             $parsedExpression = explode('.', $expression);
 
             if (0 == $i) {
-                $qb->leftJoin($this->rootAlias . '.' . $expression, $alias);
+                $joinProperty = $this->rootAlias . '.' . $expression;
             } else if (count($parsedExpression) == 1) {
-                $qb->leftJoin($this->rootAlias . '.' . $parsedExpression[0], $alias);
+                $joinProperty = $this->rootAlias . '.' . $parsedExpression[0];
             } else {
                 $rootExpression = implode('.', array_slice($parsedExpression, 0, -1));
                 $propertyName = end($parsedExpression);
 
                 $parentAlias = $this->resolveExpressionToAlias($rootExpression);
-                $qb->leftJoin($parentAlias . '.' . $propertyName, $alias);
+                $joinProperty = $parentAlias . '.' . $propertyName;
             }
+
+            $qb->leftJoin($joinProperty, $alias);
         }
     }
 
@@ -245,18 +247,18 @@ class ExpressionManager
      * use this method or injectJoins() but not both of them at the same time.
      *
      * @param QueryBuilder $qb
-     * @param Expression[] $expressions  All expressions which were provided in "fetch". The method will filter
+     * @param Expression[] $fetchExpressions  All expressions which were provided in "fetch". The method will filter
      *                                   "select" fetches by itself
      */
-    public function injectFetchSelects(QueryBuilder $qb, array $expressions)
+    public function injectFetchSelects(QueryBuilder $qb, array $fetchExpressions)
     {
         $expandedExpressions = array();
-        foreach ($expressions as $expression) {
-            $isFetchOnly = !$expression->getAlias() && !$expression->getFunction();
+        foreach ($fetchExpressions as $fetchExpression) {
+            $isFetchOnly = !$fetchExpression->getAlias() && !$fetchExpression->getFunction();
 
             // we need to have only "fetch" expressions
-            if ($isFetchOnly && $this->isAssociation($expression->getExpression())) {
-                $expandedExpressions = array_merge($expandedExpressions, $this->expandExpression($expression->getExpression()));
+            if ($isFetchOnly && $this->isAssociation($fetchExpression->getExpression())) {
+                $expandedExpressions = array_merge($expandedExpressions, $this->expandExpression($fetchExpression->getExpression()));
             }
         }
 
@@ -269,19 +271,23 @@ class ExpressionManager
         }
 
         $map = array();
-        foreach ($expandedExpressions as $expression) {
-            $this->allocateAlias($expression);
+        foreach ($expandedExpressions as $fetchExpression) {
+            $this->allocateAlias($fetchExpression);
 
-            $map[$this->resolveExpressionToAlias($expression)] = $expression;
+            $map[$this->resolveExpressionToAlias($fetchExpression)] = $fetchExpression;
         }
 
-        foreach ($map as $alias=>$expression) {
+        foreach ($map as $alias=>$fetchExpression) {
             if (!in_array($alias, $selects)) {
                 $qb->addSelect($alias);
             }
         }
 
-        $this->doInjectJoins($qb, $expandedExpressions);
+        // By injecting "allocatedAliases" instead of just $expandedExpressions the JOIN
+        // clause will also contain JOINs which were created implicitly through filter expressions.
+        // We can afford this kind of behaviour because invocations of "allocateAlias" method above updates
+        // "$this->allocatedAliases" property.
+        $this->doInjectJoins($qb, $this->allocatedAliases);
     }
 
     /**
