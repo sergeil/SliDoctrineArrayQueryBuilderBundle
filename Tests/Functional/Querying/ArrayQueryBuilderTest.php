@@ -497,7 +497,7 @@ class ArrayQueryBuilderTest extends AbstractDatabaseTestCase
     /**
      * Thanks to Eduardo L. for pointing out this bug and offering a fix!
      */
-    public function testFetchClausesInjectionWithExplicitFetchStatement()
+    public function testJoinClauseWithExplicitFetchStatement()
     {
         $qb = self::$builder->buildQueryBuilder(User::clazz(), array(
             'filter' => array(
