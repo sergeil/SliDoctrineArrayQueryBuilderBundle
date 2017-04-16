@@ -67,7 +67,9 @@ Add this dependency to your composer.json:
 
 Update your AppKernel class and add this:
 
-    new \Sli\DoctrineArrayQueryBuilderBundle\SliDoctrineArrayQueryBuilderBundle(),
+    new Sli\DoctrineArrayQueryBuilderBundle\SliDoctrineArrayQueryBuilderBundle(),
+    new Sli\AuxBundle\SliAuxBundle(),
+    new Sli\DoctrineEntityDataMapperBundle\SliDoctrineEntityDataMapperBundle()
 
 ## Licensing
 

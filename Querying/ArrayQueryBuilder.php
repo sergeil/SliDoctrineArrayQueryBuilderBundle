@@ -4,6 +4,7 @@ namespace Sli\DoctrineArrayQueryBuilderBundle\Querying;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\Expr;
+use Sli\DoctrineArrayQueryBuilderBundle\Exceptions\Querying\InvalidFilterException;
 use Sli\DoctrineArrayQueryBuilderBundle\Parsing\Expression;
 use Sli\DoctrineArrayQueryBuilderBundle\Parsing\Filter;
 use Sli\DoctrineArrayQueryBuilderBundle\Parsing\FilterInterface;
@@ -281,7 +282,7 @@ class ArrayQueryBuilder
             foreach (new Filters($arrayQuery['filter']) as $filter) {
                 /* @var FilterInterface $filter */
                 if (!$filter->isValid()) {
-                    continue;
+                    throw new InvalidFilterException("Filter '$filter' is not valid'");
                 }
 
                 if ($filter instanceof OrFilter) {
